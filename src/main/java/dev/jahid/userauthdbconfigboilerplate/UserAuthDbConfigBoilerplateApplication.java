@@ -9,5 +9,4 @@ public class UserAuthDbConfigBoilerplateApplication {
     public static void main( String[] args ) {
         SpringApplication.run( UserAuthDbConfigBoilerplateApplication.class, args );
     }
-
 }

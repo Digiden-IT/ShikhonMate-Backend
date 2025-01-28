@@ -1,9 +1,12 @@
 HELP.md
+.gitattributes
+.gitignore
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+src/main/resources/application-test.yml
 
 ### STS ###
 .apt_generated

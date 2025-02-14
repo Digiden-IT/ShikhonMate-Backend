@@ -10,6 +10,10 @@ spring:
       idle-timeout: 30000
       max-lifetime: 1800000
       pool-name: HikariCP
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
 
   servlet:
     context-path: /api/v1

@@ -1,6 +1,7 @@
 package dev.jahid.user_auth_db_config_boilerplate.user.model;
 
 import dev.jahid.user_auth_db_config_boilerplate.user.Role;
+import dev.jahid.user_auth_db_config_boilerplate.user.request.AddUserRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,4 +30,10 @@ public class User {
     @Enumerated( EnumType.STRING )
     @Column( name = "role" )
     private Role role;
+
+    public User( AddUserRequest addUserRequest ) {
+        this.name = addUserRequest.getName();
+        this.email = addUserRequest.getEmail();
+        this.role = addUserRequest.getRole();
+    }
 }

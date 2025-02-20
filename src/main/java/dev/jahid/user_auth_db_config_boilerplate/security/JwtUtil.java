@@ -62,12 +62,12 @@ public class JwtUtil {
 
     public CustomUserDetails extractUser( String token ) {
         Claims claims = Jwts.parser()
-                .verifyWith(getSignKey())
+                .verifyWith( getSignKey() )
                 .build()
-                .parseSignedClaims(token)
+                .parseSignedClaims( token )
                 .getPayload();
 
-        return (CustomUserDetails) claims.get("user");
+        return (CustomUserDetails) claims.get( "user" );
     }
 
     public boolean validateToken( String token ) {

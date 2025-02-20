@@ -1,5 +1,6 @@
 package dev.jahid.user_auth_db_config_boilerplate.security;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import dev.jahid.user_auth_db_config_boilerplate.user.model.User;
 
+@Getter
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 

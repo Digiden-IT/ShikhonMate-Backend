@@ -30,6 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.mysql:mysql-connector-j:9.2.0")
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+    implementation("org.bouncycastle:bcprov-jdk18on:1.80")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -6,10 +6,9 @@ import dev.jahid.user_auth_db_config_boilerplate.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController()
 @RequestMapping("/users")
@@ -22,5 +21,17 @@ public class UserController {
     public ResponseEntity<UserResponse> addUser(@RequestBody AddUserRequest request ) {
         UserResponse response = userService.addUser( request );
         return ResponseEntity.ok( response );
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getUsers() {
+        List<UserResponse> userResponses = userService.getUsers();
+        return ResponseEntity.ok( userResponses );
+    }
+
+    @GetMapping( "/{id}" )
+    public ResponseEntity<UserResponse> getUser( @PathVariable Long id ) {
+        UserResponse user = userService.getUser( id );
+        return ResponseEntity.ok( user );
     }
 }

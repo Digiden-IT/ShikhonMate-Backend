@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor( onConstructor_ = {@Autowired} )
 public class UserService {
@@ -21,5 +25,15 @@ public class UserService {
         user.setPassword( passwordEncoder.encode( addUserRequest.getPassword() ) );
         User createdUser = userRepository.save( user );
         return new UserResponse( createdUser );
+    }
+
+    public List<UserResponse> getUsers() {
+        return userRepository.findAll().stream()
+                .map( UserResponse::new )
+                .collect( Collectors.toList() );
+    }
+
+    public UserResponse getUser( Long id ) {
+        return new UserResponse( Objects.requireNonNull( userRepository.findById(id).orElse( null ) ) );
     }
 }

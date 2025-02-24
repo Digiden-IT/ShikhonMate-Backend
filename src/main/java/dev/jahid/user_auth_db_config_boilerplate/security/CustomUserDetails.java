@@ -1,7 +1,6 @@
 package dev.jahid.user_auth_db_config_boilerplate.security;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,24 +10,35 @@ import java.util.List;
 import dev.jahid.user_auth_db_config_boilerplate.user.model.User;
 
 @Getter
-@RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private final User user;
+    private final String name;
+    private final String email;
+    private final String role;
+    private final String password;
+    private final Boolean isActive;
+
+    public CustomUserDetails( User user ) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.role = user.getRole().getName();
+        this.password = user.getPassword();
+        this.isActive = user.getIsActive();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of( new SimpleGrantedAuthority( user.getRole().getName() ) );
+        return List.of( new SimpleGrantedAuthority( this.role ) );
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return user.getName();
+        return this.email;
     }
 
     @Override
@@ -48,7 +58,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isActive;
     }
 }
 

@@ -4,12 +4,12 @@ import dev.jahid.user_auth_db_config_boilerplate.security.filter.JwtAuthenticati
 import dev.jahid.user_auth_db_config_boilerplate.security.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -20,13 +20,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.util.List;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private static final String[]  PUBLIC_API_ENDPOINTS = {
-      "/users"
+      "/users", "/users/**", "/auth/login"
     };
 
     public SecurityConfig( CustomUserDetailsService customUserDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter ) {
@@ -39,7 +40,7 @@ public class SecurityConfig {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService( customUserDetailsService );
         provider.setPasswordEncoder( passwordEncoder() );
-        return new ProviderManager( List.of(provider) );
+        return new ProviderManager( List.of( provider ) );
     }
 
     @Bean

@@ -23,8 +23,8 @@ public class UserService {
     public UserResponse addUser(AddUserRequest addUserRequest ) {
         User user = new User( addUserRequest );
         user.setPassword( passwordEncoder.encode( addUserRequest.getPassword() ) );
-        User createdUser = userRepository.save( user );
-        return new UserResponse( createdUser );
+        user = userRepository.save( user );
+        return new UserResponse( user );
     }
 
     public List<UserResponse> getUsers() {
@@ -34,6 +34,6 @@ public class UserService {
     }
 
     public UserResponse getUser( Long id ) {
-        return new UserResponse( Objects.requireNonNull( userRepository.findById(id).orElse( null ) ) );
+        return new UserResponse( Objects.requireNonNull( userRepository.findById( id ).orElse( null ) ) );
     }
 }

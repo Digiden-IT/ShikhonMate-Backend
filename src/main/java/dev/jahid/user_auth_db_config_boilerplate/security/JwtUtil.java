@@ -72,7 +72,7 @@ public class JwtUtil {
 
     public boolean validateToken( String token ) {
         try {
-            Jwts.parser().verifyWith(getSignKey()).build().parseSignedClaims( token );
+            Jwts.parser().verifyWith( getSignKey() ).build().parseSignedClaims( token );
             return true;
         } catch ( ExpiredJwtException e ) {
             System.out.println( "JWT expired at: " + e.getClaims().getExpiration() );

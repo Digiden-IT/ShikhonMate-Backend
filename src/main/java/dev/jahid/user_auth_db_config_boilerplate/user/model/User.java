@@ -27,9 +27,15 @@ public class User {
     @Column( name = "password" )
     private String password;
 
+    @Column( name = "is_active", columnDefinition = "boolean default true")
+    private Boolean isActive;
+
     @Enumerated( EnumType.STRING )
     @Column( name = "role" )
     private Role role;
+
+    @Column( name = "refresh_token" )
+    private String refreshToken;
 
     public User( AddUserRequest addUserRequest ) {
         this.name = addUserRequest.getName();

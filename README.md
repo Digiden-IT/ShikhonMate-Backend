@@ -1,2 +1,2 @@
-# spring-boot-boilerplate-app-user-auth-db-config
-This Boilerplate Spring Boot application consist of minimum set up for started working with a application without worrying about user authentication and database configuration.
+# spring-boot-boilerplate-application
+This Boilerplate Spring Boot application consists of a minimum set-up for starting to work with an application without worrying about user authentication and database configuration.

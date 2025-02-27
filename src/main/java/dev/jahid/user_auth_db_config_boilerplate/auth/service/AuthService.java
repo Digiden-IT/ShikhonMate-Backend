@@ -29,9 +29,9 @@ public class AuthService {
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-        String accessToken = jwtUtil.generateToken( userDetails );
+        String accessToken = jwtUtil.generateAccessToken( userDetails );
         String refreshToken = jwtUtil.generateRefreshToken( userDetails );
 
-        return ResponseEntity.ok( new AuthResponse(accessToken, refreshToken ) );
+        return ResponseEntity.ok( new AuthResponse( accessToken, refreshToken ) );
     }
 }

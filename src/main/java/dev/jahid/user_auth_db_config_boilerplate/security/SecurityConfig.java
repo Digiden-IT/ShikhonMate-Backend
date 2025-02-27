@@ -27,7 +27,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private static final String[]  PUBLIC_API_ENDPOINTS = {
-      "/users", "/users/**", "/auth/login"
+            "/auth/login"
     };
 
     public SecurityConfig( CustomUserDetailsService customUserDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter ) {

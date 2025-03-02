@@ -3,7 +3,6 @@ package dev.jahid.user_auth_db_config_boilerplate.security.service;
 import dev.jahid.user_auth_db_config_boilerplate.security.CustomUserDetails;
 import dev.jahid.user_auth_db_config_boilerplate.user.model.User;
 import dev.jahid.user_auth_db_config_boilerplate.user.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

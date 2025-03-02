@@ -1,14 +1,12 @@
 package dev.jahid.user_auth_db_config_boilerplate.security;
 
 import dev.jahid.user_auth_db_config_boilerplate.security.service.CustomUserDetailsService;
-import dev.jahid.user_auth_db_config_boilerplate.user.model.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -41,7 +39,7 @@ public class JwtUtil {
         Date expiryDate = new Date( now.getTime() + expirationTimeInMilliseconds );
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put( "email", customUserDetails.getEmail() );
+        claims.put( "email", customUserDetails.getUser().getEmail() );
 
         return Jwts.builder()
                 .claims( claims )

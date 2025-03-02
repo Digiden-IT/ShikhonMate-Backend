@@ -1,6 +1,5 @@
 package dev.jahid.user_auth_db_config_boilerplate.security.filter;
 
-import dev.jahid.user_auth_db_config_boilerplate.security.CustomUserDetails;
 import dev.jahid.user_auth_db_config_boilerplate.security.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

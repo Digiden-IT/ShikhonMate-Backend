@@ -12,33 +12,25 @@ import dev.jahid.user_auth_db_config_boilerplate.user.model.User;
 @Getter
 public class CustomUserDetails implements UserDetails {
 
-    private final String name;
-    private final String email;
-    private final String role;
-    private final String password;
-    private final Boolean isActive;
+    User user;
 
     public CustomUserDetails( User user ) {
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.role = user.getRole().getName();
-        this.password = user.getPassword();
-        this.isActive = user.getIsActive();
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of( new SimpleGrantedAuthority( this.role ) );
+        return List.of( new SimpleGrantedAuthority( this.user.getRole().getName() ) );
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.user.getEmail();
     }
 
     @Override
@@ -58,7 +50,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isActive;
+        return this.user.getIsActive();
     }
 }
 

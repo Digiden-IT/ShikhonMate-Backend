@@ -2,6 +2,7 @@ package dev.jahid.user_auth_db_config_boilerplate.security;
 
 import dev.jahid.user_auth_db_config_boilerplate.security.filter.JwtAuthenticationFilter;
 import dev.jahid.user_auth_db_config_boilerplate.security.service.CustomUserDetailsService;
+import dev.jahid.user_auth_db_config_boilerplate.user.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,6 +59,7 @@ public class SecurityConfig {
                 .formLogin( AbstractHttpConfigurer::disable )
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers( PUBLIC_API_ENDPOINTS ).permitAll()
+                                .requestMatchers( "/users" ).hasAuthority( Role.ADMIN.getName() )
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore( jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class )

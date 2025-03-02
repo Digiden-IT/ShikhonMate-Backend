@@ -1,6 +1,7 @@
 package dev.jahid.user_auth_db_config_boilerplate.auth.service;
 
 import dev.jahid.user_auth_db_config_boilerplate.auth.request.LoginRequest;
+import dev.jahid.user_auth_db_config_boilerplate.auth.request.RefreshRequest;
 import dev.jahid.user_auth_db_config_boilerplate.auth.response.AuthResponse;
 import dev.jahid.user_auth_db_config_boilerplate.security.CustomUserDetails;
 import dev.jahid.user_auth_db_config_boilerplate.security.JwtUtil;
@@ -11,6 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,5 +36,11 @@ public class AuthService {
         String refreshToken = jwtUtil.generateRefreshToken( userDetails );
 
         return ResponseEntity.ok( new AuthResponse( accessToken, refreshToken ) );
+    }
+
+    public AuthResponse refresh( RefreshRequest refreshRequest ) {
+        CustomUserDetails userDetails = jwtUtil.extractUser( refreshRequest.getToken() );
+        String accessToken = jwtUtil.generateAccessToken( userDetails );
+        return new AuthResponse( accessToken, refreshRequest.getToken() );
     }
 }

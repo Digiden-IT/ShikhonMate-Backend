@@ -57,11 +57,10 @@ public class JwtUtil {
     }
 
     public String generateRefreshToken( CustomUserDetails customUserDetails ) {
-
         return generateToken( customUserDetails, refreshExpiration );
     }
 
-    public UserDetails extractUser(String token ) {
+    public CustomUserDetails extractUser( String token ) {
         Claims claims = Jwts.parser()
                 .verifyWith( getSignKey() )
                 .build()

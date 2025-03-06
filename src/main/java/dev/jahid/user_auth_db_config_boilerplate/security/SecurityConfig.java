@@ -27,7 +27,10 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private static final String[]  PUBLIC_API_ENDPOINTS = {
-            "/auth/**"
+            "/auth/**",
+            "/boilerplate-api-docs/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**"
     };
 
     public SecurityConfig( CustomUserDetailsService customUserDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter ) {

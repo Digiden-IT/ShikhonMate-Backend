@@ -3,11 +3,12 @@ package com.shikhon_mate.user.model;
 import com.shikhon_mate.user.Role;
 import com.shikhon_mate.user.request.AddUserRequest;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table( name = "users")
+@Table( name = "users" )
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,10 +25,13 @@ public class User {
     @Column( name = "email" )
     private String email;
 
+    @Column( name = "phoneNumber" )
+    private String phoneNumber;
+
     @Column( name = "password" )
     private String password;
 
-    @Column( name = "is_active", columnDefinition = "boolean default true")
+    @Column( name = "is_active", columnDefinition = "boolean default true" )
     private Boolean isActive;
 
     @Enumerated( EnumType.STRING )

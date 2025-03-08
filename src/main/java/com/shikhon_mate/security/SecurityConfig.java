@@ -28,7 +28,7 @@ public class SecurityConfig {
 
     private static final String[]  PUBLIC_API_ENDPOINTS = {
             "/auth/**",
-            "/boilerplate-api-docs/**",
+            "/shikhon-mate-api-docs/**",
             "/swagger-ui/**",
             "/v3/api-docs/**"
     };
